@@ -5,18 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SkipSplash : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject Main;
+    [SerializeField] private GameObject Splash;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene("MainMenu");
+            Main.SetActive(true);
+            Splash.SetActive(false);
         }
     }
 }

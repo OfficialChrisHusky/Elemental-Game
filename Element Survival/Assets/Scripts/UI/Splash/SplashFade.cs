@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class SplashFade : MonoBehaviour
 {
     public Image SplashImage;
-    public string Load;
+    //public string Load;//
+    [SerializeField] private GameObject Main;
+    [SerializeField] private GameObject Splash;
 
     IEnumerator Start()
     {
@@ -19,7 +21,9 @@ public class SplashFade : MonoBehaviour
         FadeOut();
         yield return new WaitForSeconds(2.5f);
 
-        SceneManager.LoadScene(Load);
+        //SceneManager.LoadScene(Load);//
+        MenuLoad();
+        yield return new WaitForSeconds(1.5f);
     }
 
     void FadeIn()
@@ -30,5 +34,12 @@ public class SplashFade : MonoBehaviour
     void FadeOut()
     {
         SplashImage.CrossFadeAlpha(0.0f, 2.5f, false);
+        
+    }
+
+    void MenuLoad()
+    {
+        Main.SetActive(true);
+        Splash.SetActive(false);
     }
 }
