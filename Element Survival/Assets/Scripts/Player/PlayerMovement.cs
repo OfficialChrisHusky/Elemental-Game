@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update() {
 
+        if (!Player.instance.canMove) return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical   = Input.GetAxisRaw("Vertical");
 

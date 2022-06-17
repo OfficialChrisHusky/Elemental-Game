@@ -19,6 +19,8 @@ public class PlayerLook : MonoBehaviour {
 
     private void Update() {
 
+        if (!Player.instance.canLook) return;
+
         yRot += Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensitivity;
         xRot -= Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensitivity;
 
