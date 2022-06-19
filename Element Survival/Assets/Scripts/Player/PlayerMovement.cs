@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update() {
 
+        if (!Player.instance.canMove) return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical   = Input.GetAxisRaw("Vertical");
 
@@ -55,7 +57,9 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        
+
+        if (!Player.instance.canMove) return;
+
         rb.AddForce(direction.normalized * moveSpeed * 100.0f * Time.deltaTime * multiplier, ForceMode.Acceleration);
 
     }
