@@ -473,6 +473,8 @@ GameObject:
   - component: {fileID: 2104900543}
   - component: {fileID: 2104900542}
   - component: {fileID: 2104900541}
+  - component: {fileID: 2104900548}
+  - component: {fileID: 2104900547}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -597,6 +599,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2104900547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104900540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42102b3501549cc42b9ad232b2eff88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  sprintMultiplier: 1.5
+  jumpHeight: 0
+  isGrounded: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheck: {fileID: 0}
+  groundDistance: 0.4
+  groundDrag: 1
+  airDrag: 0.5
+--- !u!114 &2104900548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104900540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07629462683c94bb10f246905b76d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  regenerateAmount: 0.1
+  healthText: {fileID: 0}
+  damageAudio: {fileID: 0}
+  damageVisual: {fileID: 0}
+  isAlive: 1
+  canMove: 1
+  canLook: 1
+  canRegenerate: 1
+  movement: {fileID: 0}
+  look: {fileID: 0}
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
