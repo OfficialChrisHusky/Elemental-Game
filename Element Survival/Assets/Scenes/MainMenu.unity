@@ -218,6 +218,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1216009082}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &57126078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3282,8 +3294,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Producer - Spencer Brown\n\nAnimator - Andrew Summers\n\nProgrammer (UI/UX)
     - Kai Williams-Price\nProgrammer (Player Controls) - Chris Husky\nProgrammer
-    (Multiplayer functionality) - Zhav\n\nMusic - khachuchrian\n\nWriter - Dan \n\nModeler
-    - TimeBomb176\n\n"
+    (Inventory) - Levente\nProgrammer (Multiplayer functionality) - Zhav\n\nMusic
+    - khachuchrian\n\nWriter - Dan \n\nModeler - TimeBomb176\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3443,7 +3455,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1635242623}
+      - m_Target: {fileID: 838319416}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -5265,7 +5277,6 @@ GameObject:
   - component: {fileID: 1797301143}
   - component: {fileID: 1797301142}
   - component: {fileID: 1797301141}
-  - component: {fileID: 1797301140}
   m_Layer: 5
   m_Name: Yes
   m_TagString: Untagged
@@ -5293,18 +5304,6 @@ RectTransform:
   m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1797301140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797301138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b02248e268d9548aaf1e517cc3e52e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1797301141
 MonoBehaviour:
   m_ObjectHideFlags: 0
