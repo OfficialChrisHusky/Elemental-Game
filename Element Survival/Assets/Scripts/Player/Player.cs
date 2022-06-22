@@ -26,19 +26,41 @@ public class Player : MonoBehaviour {
     [SerializeField] private AudioSource damageAudio;
     [SerializeField] private Image damageVisual;
 
+    [Header("Element System")]
+    [SerializeField] private Element element;
+    [SerializeField] private KeyCode abilityMenuKey = KeyCode.Q;
+    [SerializeField] private TMP_Text elementText;
+
     [Header("Bools")]
     public bool isAlive = true;
     public bool canMove = true;
     public bool canLook = true;
     public bool canRegenerate = true;
 
+    [Header("Body Parts")]
+    public GameObject body;
+    public Camera cam;
+
     [Header("Scripts")]
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private PlayerLook look;
+    [SerializeField] private AbilityMenu abilityMenu;
 
     private void Start() {
         
-        if(damageVisual) { damageVisual.canvasRenderer.SetAlpha(0.0f); damageVisual.gameObject.SetActive(true); }
+        if(damageVisual) {
+            
+            damageVisual.canvasRenderer.SetAlpha(0.0f);
+            damageVisual.gameObject.SetActive(true);
+        
+        }
+
+        if (element) {
+            
+            elementText.text = "Element: " + element.name;
+            elementText.color = element.color;
+        
+        }
 
     }
 
@@ -48,6 +70,20 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.KeypadMinus)) Damage(15.0f);
         if (canRegenerate) Heal(regenerateAmount * 0.01f);
 
+        if ((Input.GetKeyDown(abilityMenuKey)
+            || (abilityMenu.gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape)))
+            && element) {
+
+            abilityMenu.Open(element);
+
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)) {
+
+            element.abilities[0].Use();
+
+        }
+
     }
 
     //-----------------------------
@@ -55,9 +91,30 @@ public class Player : MonoBehaviour {
     //-----------------------------
     public void Damage(float amount) {
 
+        //If Player is Dead don't do anything
         if (!isAlive) return;
-        if (health - amount <= 0.0f) { health = 0.0f; UpdateUI(); Die(); return; }
-        if (damageVisual) { damageVisual.canvasRenderer.SetAlpha(0.7f); damageVisual.CrossFadeAlpha(0.0f, 0.5f, false); }
+
+        //If the Player will die when damaged by this amount
+        if (health - amount <= 0.0f) {
+            
+            health = 0.0f;
+            
+            UpdateUI();
+            Die();
+            
+            return;
+        
+        }
+
+        //If there is a Damage Visual
+        if (damageVisual) {
+            
+            damageVisual.canvasRenderer.SetAlpha(0.7f);
+            damageVisual.CrossFadeAlpha(0.0f, 0.5f, false);
+        
+        }
+        
+        //If there is a Damage Audio
         if (damageAudio) damageAudio.Play();
 
         health -= amount;
@@ -66,8 +123,19 @@ public class Player : MonoBehaviour {
     }
     public void Heal(float amount) {
 
+        //If the Player already has maxHealth or is Dead, don't do anything
         if (health >= maxHealth || !isAlive) return;
-        if (health + amount >= maxHealth) { health = maxHealth; UpdateUI(); return; }
+
+        //If the Heal would exceed the MaxHealth
+        if (health + amount >= maxHealth) {
+
+            health = maxHealth;
+            
+            UpdateUI();
+            
+            return;
+        
+        }
 
         health += amount;
         UpdateUI();
