@@ -13,6 +13,7 @@
 /[Uu]ser[Ss]ettings/
 # file on crash reports
 sysinfo.txt
+EditorUserSettings.asset
 # Unity3D generated meta files
 *.pidb.meta
 
