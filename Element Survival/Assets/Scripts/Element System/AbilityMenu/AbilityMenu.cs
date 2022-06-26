@@ -32,7 +32,7 @@ public class AbilityMenu : MonoBehaviour {
 
     public void Open(Element element) {
 
-       this.element = element;
+        this.element = element;
 
         abilityInfo.SetActive(false);
         gameObject.SetActive(!gameObject.activeInHierarchy);

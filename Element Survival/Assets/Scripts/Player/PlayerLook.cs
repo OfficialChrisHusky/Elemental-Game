@@ -10,13 +10,6 @@ public class PlayerLook : MonoBehaviour {
     float xRot;
     float yRot;
 
-    private void Start() {
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-    }
-
     private void Update() {
 
         if (!Player.instance.canLook) return;

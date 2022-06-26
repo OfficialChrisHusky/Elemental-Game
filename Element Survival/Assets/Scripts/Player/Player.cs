@@ -27,7 +27,9 @@ public class Player : MonoBehaviour {
     [SerializeField] private Image damageVisual;
 
     [Header("Element System")]
+    public Ability currentAbility;
     [SerializeField] private Element element;
+    [SerializeField] private GameObject elementSelectionGO;
     [SerializeField] private KeyCode abilityMenuKey = KeyCode.Q;
     [SerializeField] private TMP_Text elementText;
 
@@ -47,6 +49,25 @@ public class Player : MonoBehaviour {
     [SerializeField] private AbilityMenu abilityMenu;
 
     private void Start() {
+
+        if (!element) {
+
+            elementSelectionGO.SetActive(true);
+
+            canMove = false;
+            canLook = false;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+        } else {
+
+            elementSelectionGO.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+        }
         
         if(damageVisual) {
             
@@ -55,11 +76,11 @@ public class Player : MonoBehaviour {
         
         }
 
-        if (element) {
-            
+        if(element) {
+
             elementText.text = "Element: " + element.name;
             elementText.color = element.color;
-        
+
         }
 
     }
@@ -78,11 +99,33 @@ public class Player : MonoBehaviour {
 
         }
 
-        if(Input.GetKeyDown(KeyCode.E)) {
+        foreach(Ability ability in element.abilities) {
 
-            element.abilities[0].Use();
+            if (Input.GetKeyDown(ability.useKey)) ability.Use();
 
         }
+
+        if(currentAbility && Input.GetKeyDown(KeyCode.Mouse0)) {
+
+            currentAbility.Activate();
+
+        }
+
+    }
+
+    public void SelectElement(Element element) {
+
+        this.element = element;
+        elementSelectionGO.SetActive(false);
+
+        canMove = true;
+        canLook = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        elementText.text = "Element: " + element.name;
+        elementText.color = element.color;
 
     }
 
