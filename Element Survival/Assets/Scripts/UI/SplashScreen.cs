@@ -38,7 +38,13 @@ public class SplashScreen : MonoBehaviour
 
             Main.SetActive(true);
             gameObject.SetActive(false);
+        }
 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isShowingSplash)
+        {
+
+            Main.SetActive(true);
+            gameObject.SetActive(false);
         }
 
     }

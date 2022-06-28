@@ -7,5 +7,6 @@ public class SceneChanger : MonoBehaviour
     public void MoveToScene(string SceneID)
     {
         SceneManager.LoadScene(SceneID);
+        //Allows the scene to change to the entered ID upon clicking associated button//
     }
 }
