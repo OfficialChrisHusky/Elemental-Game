@@ -15,18 +15,6 @@ public class Pause : MonoBehaviour
     public GameObject CSettings;
     public GameObject PauseButtons;
 
-    float tempSensitivity;
-
-
-    private PlayerLook PlayerLook;
-    //Accesses the PlayerLook script to grab a variable from it//
-
-    void Start()
-    {
-        PlayerLook = GetComponent<PlayerLook>();
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -59,7 +47,7 @@ public class Pause : MonoBehaviour
         Cursor.visible = false;
         //Makes the cursor invisible again, and locks it//
 
-        PlayerLook.sensitivity = tempSensitivity;
+        Player.instance.canLook = true;
         //Resumes the camera rotation when the Pause menu fades//
 
         Paused = false;
@@ -75,8 +63,7 @@ public class Pause : MonoBehaviour
         Cursor.visible = true;
         //Unlocks the cursor, and makes it visible to click through the menus//
 
-        tempSensitivity = PlayerLook.sensitivity;
-        PlayerLook.sensitivity = 0.0f;
+        Player.instance.canLook = false;
         //Locks camera rotaion for the duration of the pause//
 
         Paused = true;
