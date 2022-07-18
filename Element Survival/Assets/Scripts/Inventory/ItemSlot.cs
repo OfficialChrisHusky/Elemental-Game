@@ -92,13 +92,13 @@ public class ItemSlot : MonoBehaviour {
 
     public void Select() {
 
-        transform.GetChild(0).GetComponent<Image>().color = new Color(0.08f, 0.08f, 0.08f, 0.31f);
+        transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 0.04f);
 
     }
 
     public void Deselect() {
 
-        transform.GetChild(0).GetComponent<Image>().color = new Color(0.0f, 0.0f, 0.0f, 0.47f);
+        transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 0.0f);
 
     }
 

@@ -69,11 +69,11 @@ public class Inventory : MonoBehaviour {
 
         if(Input.GetAxis("Mouse ScrollWheel") > 0.0f) {
 
-            SelectHotbarSlot(selectedSlotIndex == 8 ? 0 : selectedSlotIndex + 1);
+            SelectHotbarSlot(selectedSlotIndex == 0 ? 8 : selectedSlotIndex - 1);
 
         } else if(Input.GetAxis("Mouse ScrollWheel") < 0.0f) {
 
-            SelectHotbarSlot(selectedSlotIndex == 0 ? 8 : selectedSlotIndex - 1);
+            SelectHotbarSlot(selectedSlotIndex == 8 ? 0 : selectedSlotIndex + 1);
 
         }
 

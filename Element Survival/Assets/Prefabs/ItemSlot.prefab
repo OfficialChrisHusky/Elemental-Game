@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402564248883382626}
   - component: {fileID: 402564248883382428}
-  - component: {fileID: 3344264303954941350}
+  - component: {fileID: 7474063474848350825}
   - component: {fileID: 205312286772486746}
   m_Layer: 5
   m_Name: ItemSlot
@@ -49,7 +49,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402564248883382625}
   m_CullTransparentMesh: 1
---- !u!114 &3344264303954941350
+--- !u!114 &7474063474848350825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.039215688}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.039215688}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.039215688}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0}
