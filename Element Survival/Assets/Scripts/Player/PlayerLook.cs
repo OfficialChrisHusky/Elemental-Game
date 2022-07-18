@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour {
 
-    [SerializeField] public float sensitivity;
+    [SerializeField] private float sensitivity;
     [SerializeField] private Transform body;
 
     float xRot;

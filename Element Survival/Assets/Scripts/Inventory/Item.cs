@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+[CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Inventory/Item")]
+public class Item : ScriptableObject {
+
+    public string name;
+    public string description;
+    public int id;
+    public int maxStack = 100;
+    public Sprite sprite;
+
+    virtual public void PrimaryUse() {
+
+        Debug.Log("Primary Use: " + name);
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    virtual public void SecondaryUse() {
+
+        Debug.Log("Secondary Use: " + name);
+
     }
+
 }
