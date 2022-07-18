@@ -52,8 +52,10 @@ public class Inventory : MonoBehaviour {
 
         if(tempSlot.isDragged) tempSlot.transform.position = Input.mousePosition;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && selectedSlot.item) { selectedSlot.item.PrimaryUse(); }
-        if (Input.GetKeyDown(KeyCode.Mouse1) && selectedSlot.item) { selectedSlot.item.SecondaryUse(); }
+        if (Input.GetKeyDown(KeyCode.Mouse0) && selectedSlot.item && !isOpen)
+            selectedSlot.item.PrimaryUse();
+        if (Input.GetKeyDown(KeyCode.Mouse1) && selectedSlot.item && !isOpen)
+            selectedSlot.item.SecondaryUse();
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) { SelectHotbarSlot(0); }
         if (Input.GetKeyDown(KeyCode.Alpha2)) { SelectHotbarSlot(1); }
