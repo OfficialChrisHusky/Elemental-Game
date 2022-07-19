@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5845530804172146382}
   - component: {fileID: 8017518195370502162}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: BirchLOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,12 +274,12 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.30738908
+  - screenRelativeHeight: 0.113321595
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6282227851055326138}
     - renderer: {fileID: 262075712489738059}
-  - screenRelativeHeight: 0.16864944
+  - screenRelativeHeight: 0.06252879
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5845530804172146382}
