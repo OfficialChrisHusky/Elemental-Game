@@ -29,8 +29,11 @@ public class PlayerGrab : MonoBehaviour
         if (!Physics.Raycast(ray, out var hitInfo)) return;
         
         var hitObject = hitInfo.collider.gameObject;
-        if (hitObject.tag.Equals("Grabbable") && Input.GetMouseButtonDown(0))
+        if (hitObject.tag.Equals("Grabbable") && Input.GetMouseButtonDown(0)) {
             Destroy(hitObject);
+            ItemIdentifier itemIdentifier = hitObject.GetComponent<ItemIdentifier>();
+            Inventory.instance.AddItem(itemIdentifier.Item,itemIdentifier.quantity);
+        }
 
         if (!Input.GetMouseButtonDown(1)) return;
         switch (isGrabbing)
