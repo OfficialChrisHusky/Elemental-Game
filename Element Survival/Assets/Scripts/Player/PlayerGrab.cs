@@ -10,6 +10,7 @@ public class PlayerGrab : MonoBehaviour
     private GameObject grabbedObject;
     private Rigidbody grabbedRigidbody;
     private bool isGrabbing;
+    private bool isMoving;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class PlayerGrab : MonoBehaviour
         if (!Physics.Raycast(ray, out var hitInfo)) return;
         
         var hitObject = hitInfo.collider.gameObject;
-        if (hitObject.tag.Equals("Grabbable") && Input.GetMouseButtonDown(0)) {
+        if (hitObject.tag.Equals("Grabbable") && Input.GetMouseButtonDown(0) && !isGrabbing) {
             Destroy(hitObject);
             ItemIdentifier itemIdentifier = hitObject.GetComponent<ItemIdentifier>();
             Inventory.instance.AddItem(itemIdentifier.Item,itemIdentifier.quantity);
@@ -45,16 +46,26 @@ public class PlayerGrab : MonoBehaviour
             case false when hitObject.tag.Equals("Grabbable") && Input.GetMouseButtonDown(1):
                 grabbedRigidbody = hitObject.GetComponent<Rigidbody>();
                 isGrabbing = true;
+                isMoving = true;
                 break;
         }
+        
+       
+        
     }
 
     private void FixedUpdate()
     {
-        if (isGrabbing)
+        var ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        if (isGrabbing && isMoving)
         {
             grabbedRigidbody.velocity = Vector3.zero;
             grabbedRigidbody.position =  mainCamera.transform.position + mainCamera.transform.forward * 2;
+            if (!Input.GetMouseButtonDown(0)) return;
+            isMoving = false;
+            grabbedRigidbody.AddForce(ray.direction * 40,ForceMode.Impulse);
         }
+   
+       
     }
 }
