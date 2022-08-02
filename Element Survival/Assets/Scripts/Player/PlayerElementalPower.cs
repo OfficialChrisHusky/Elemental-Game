@@ -27,22 +27,27 @@ public class PlayerElementalPower : MonoBehaviour
     void Update()
     {
         var ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        selectElement();
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+            selectElement(Element.Fire);
+        }
+
         if (currentElement != Element.None && Input.GetMouseButtonDown(0)) {
             Instantiate(currentPrefab,ray.origin, mainCamera.transform.rotation);
         }
     }
 
-    private void selectElement()
+    public void selectElement(Element toSelect)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        switch (toSelect)
         {
-            if (currentElement == Element.Fire) {
+            case Element.Fire when currentElement == Element.Fire:
                 currentElement = Element.None;
                 return;
-            }
-            currentElement = Element.Fire;
-            currentPrefab = fireBall;
+            case Element.Fire:
+                currentElement = Element.Fire;
+                currentPrefab = fireBall;
+                break;
         }
     }
 }

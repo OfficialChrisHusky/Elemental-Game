@@ -27,6 +27,6 @@ public class Fire : MonoBehaviour
         if (collision.gameObject.tag.Equals("Killable")) {
             collision.gameObject.GetComponent<HealthSystem>().damage(damage);
         }
-        Destroy(gameObject);
+        Destroy(this.transform.parent.gameObject);
     }
 }
