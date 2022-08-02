@@ -10721,7 +10721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311121126 stripped
@@ -14924,11 +14924,12 @@ GameObject:
   - component: {fileID: 1870675198}
   - component: {fileID: 1870675197}
   - component: {fileID: 1870675196}
-  - component: {fileID: 1870675201}
   - component: {fileID: 1870675195}
+  - component: {fileID: 1870675201}
   - component: {fileID: 1870675194}
   - component: {fileID: 1870675193}
   - component: {fileID: 1870675200}
+  - component: {fileID: 1870675202}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -15165,6 +15166,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48dea446b43083d4fbeb3732d5d75cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwForce: 10
+--- !u!114 &1870675202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870675192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb88af64e6a9964a99cec9986f8b3a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentElement: 4
+  fireBall: {fileID: 2356957262912760991, guid: f1ac204a41a592947a7fc0e41fb2b5e6, type: 3}
 --- !u!114 &1874867742 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6854558087694747411, guid: 1f2b1c9a215be81498811171a91120fa, type: 3}
@@ -16738,6 +16754,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2388006890795255808, guid: df369c1222b786249b5615efbc6760d3, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388006890795255808, guid: df369c1222b786249b5615efbc6760d3, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388006890795255808, guid: df369c1222b786249b5615efbc6760d3, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2408516958394097557, guid: df369c1222b786249b5615efbc6760d3, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -16785,6 +16813,14 @@ PrefabInstance:
     - target: {fileID: 3037420410445874479, guid: df369c1222b786249b5615efbc6760d3, type: 3}
       propertyPath: m_Name
       value: TestDummy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3037420410445874479, guid: df369c1222b786249b5615efbc6760d3, type: 3}
+      propertyPath: m_TagString
+      value: Killable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979891096325356890, guid: df369c1222b786249b5615efbc6760d3, type: 3}
+      propertyPath: m_Avatar
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df369c1222b786249b5615efbc6760d3, type: 3}
