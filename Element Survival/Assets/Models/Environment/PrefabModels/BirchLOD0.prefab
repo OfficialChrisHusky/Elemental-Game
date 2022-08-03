@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 967877575265596667}
   - component: {fileID: 3065368939523817521}
   - component: {fileID: 4416893716312612016}
+  - component: {fileID: 2574006973406138880}
   m_Layer: 0
   m_Name: BirchLOD0
   m_TagString: Untagged
@@ -107,7 +108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3569837999056937444}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -190,6 +191,20 @@ LODGroup:
     - renderer: {fileID: 3065368939143707105}
     - renderer: {fileID: 6759341227415608360}
   m_Enabled: 1
+--- !u!64 &2574006973406138880
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3569837999056937444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3291712910903952273, guid: 2dd0ff3587565ea4eaf1a8171659efe4, type: 3}
 --- !u!1001 &4416893716414834021
 PrefabInstance:
   m_ObjectHideFlags: 0
