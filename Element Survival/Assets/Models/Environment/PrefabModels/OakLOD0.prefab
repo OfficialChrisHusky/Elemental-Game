@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3768676519813979731}
   - component: {fileID: 1416927553298295449}
   - component: {fileID: 317615631529440794}
+  - component: {fileID: 5452846798948723629}
   m_Layer: 0
   m_Name: OakLOD0
   m_TagString: Untagged
@@ -109,6 +110,20 @@ LODGroup:
     - renderer: {fileID: 1416927552811664672}
     - renderer: {fileID: 314431935947845604}
   m_Enabled: 1
+--- !u!64 &5452846798948723629
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624043672914185036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5897774276177041237, guid: a977f023087d8504386c8ea7a909f34d, type: 3}
 --- !u!1 &4282295750349052975
 GameObject:
   m_ObjectHideFlags: 0
