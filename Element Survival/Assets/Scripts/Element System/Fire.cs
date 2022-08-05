@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Fire : MonoBehaviour
 {
@@ -25,8 +26,16 @@ public class Fire : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Killable")) {
-            collision.gameObject.GetComponent<HealthSystem>().damage(damage);
+            var health = collision.gameObject.GetComponent<HealthSystem>();
+            health.damage(damage);
+            var dice = Random.Range(0f, 100f);
+            if(dice <= 100 && dice >= 0) health.setHealthEffect(HealthSystem.HealthStatus.Status.BURNED); 
         }
-        Destroy(this.transform.parent.gameObject);
+        Destroy(transform.parent.gameObject);
+    }
+
+    public void multiplyDamage(float factor)
+    {
+        damage *= factor;
     }
 }

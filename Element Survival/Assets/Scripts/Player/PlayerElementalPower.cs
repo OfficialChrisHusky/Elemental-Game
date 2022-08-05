@@ -16,6 +16,8 @@ public class PlayerElementalPower : MonoBehaviour
     [Header("Element Prefab")] 
     public GameObject fireBall;
 
+    [SerializeField]
+    private float increment = 1f;
 
 // Start is called before the first frame update
     void Start()
@@ -32,8 +34,21 @@ public class PlayerElementalPower : MonoBehaviour
             selectElement(Element.Fire);
         }
 
-        if (currentElement != Element.None && Input.GetMouseButtonDown(0)) {
-            Instantiate(currentPrefab,ray.origin, mainCamera.transform.rotation);
+        if (currentElement != Element.None)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if(increment < 1.25f)
+                    increment += 0.001f;
+            }
+            
+            if (Input.GetMouseButtonUp(0))
+            {
+                var obj = Instantiate(currentPrefab,ray.origin, mainCamera.transform.rotation);
+                obj.GetComponentInChildren<Fire>().multiplyDamage(increment);
+                increment = 1f;
+            }
+
         }
     }
 
