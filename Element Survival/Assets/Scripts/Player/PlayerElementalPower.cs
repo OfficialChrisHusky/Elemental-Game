@@ -9,19 +9,25 @@ public class PlayerElementalPower : MonoBehaviour
     //used to cast ray from what we are seeing
     private Camera mainCamera;
     
-    [Header("Element Variable")]
+    [Header("Element Variables")]
     public Element currentElement = Element.None;
     private GameObject currentPrefab;
 
-    [Header("Element Prefab")] 
+    [Header("Element Prefabs")] 
     public GameObject fireBall;
 
+    [Header("Fire Variables")] 
+    public float maxIncrement = 2f;
+    public float damageIncrementDuringHold = 0.001f;
+    public float incrementBaseStart = 1f;
+    
     [SerializeField]
-    private float increment = 1f;
+    private float increment;
 
 // Start is called before the first frame update
     void Start()
     {
+        increment = incrementBaseStart;
         mainCamera = GetComponent<Player>().cam;
     }
 
@@ -36,19 +42,16 @@ public class PlayerElementalPower : MonoBehaviour
 
         if (currentElement != Element.None)
         {
-            if (Input.GetMouseButton(0))
-            {
-                if(increment < 1.25f)
-                    increment += 0.001f;
+            if (Input.GetMouseButton(0)) {
+                if(increment < maxIncrement)
+                    increment += damageIncrementDuringHold;
             }
-            
             if (Input.GetMouseButtonUp(0))
             {
                 var obj = Instantiate(currentPrefab,ray.origin, mainCamera.transform.rotation);
                 obj.GetComponentInChildren<Fire>().multiplyDamage(increment);
-                increment = 1f;
+                increment = incrementBaseStart;
             }
-
         }
     }
 

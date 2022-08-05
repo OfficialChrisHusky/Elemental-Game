@@ -31,13 +31,11 @@ public class HealthSystem : MonoBehaviour
 
     private Animator damageAnimation;
     private HealthStatus currentStatus;
-    private List<HealthStatus> statusList;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        statusList = new List<HealthStatus>();
         damageAnimation = GetComponent<Animator>();
         healthBar.gameObject.SetActive(true);
     }
@@ -54,22 +52,15 @@ public class HealthSystem : MonoBehaviour
         var worldObjectScreenPosition = new Vector2(((viewportPosition.x*sizeDelta.x)-(sizeDelta.x*0.5f)), ((viewportPosition.y*sizeDelta.y)-(sizeDelta.y*0.5f)));
         healthBar.GetComponent<RectTransform>().anchoredPosition = worldObjectScreenPosition;
         healthBar.value = life / 100f;
+    }
 
-        if (statusList.Count > 0)
+    IEnumerator damageStatus(HealthStatus status)
+    {
+        while (status.time > 0)
         {
-            for (int i = 0; i < statusList.Count; i++)
-            {
-                if (statusList[i].time > 0)
-                {
-                    statusList[i].time--;
-                    damage(statusList[i].damagePerSecond);
-                }
-                else
-                {
-                    statusList.Remove(statusList[i]);
-                }
-
-            }
+            yield return new WaitForSeconds(1);
+            status.time--;
+            damage(status.damagePerSecond);
         }
     }
 
@@ -89,8 +80,10 @@ public class HealthSystem : MonoBehaviour
 
     public void setHealthEffect(HealthStatus.Status status)
     {
-        if(status == HealthStatus.Status.BURNED)
-            statusList.Add(new HealthStatus(status,30,0.01f));
+        if (status == HealthStatus.Status.BURNED)
+        {
+            StartCoroutine(damageStatus(new HealthStatus(status, 30, 5f)));
+        }
     }
     
 }

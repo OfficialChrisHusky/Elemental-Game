@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Ability : MonoBehaviour {
 
     [Header("Default Ability Info")]
-    public string name;
+    public new string name;
     [TextArea(15, 20)]
     public string description;
     public Sprite sprite;

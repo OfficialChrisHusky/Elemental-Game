@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObjects/Inventory/Item")]
 public class Item : ScriptableObject {
 
-    public string name;
+    public new string name;
     public string description;
     public int id;
     public int maxStack = 100;

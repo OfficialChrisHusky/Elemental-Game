@@ -15099,7 +15099,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentElement: 4
-  fireBall: {fileID: 2356957262912760991, guid: f1ac204a41a592947a7fc0e41fb2b5e6, type: 3}
+  fireBall: {fileID: 4541834149665139695, guid: 30a53f143d0d0f3478781d4b2f0cd0de, type: 3}
+  increment: 1
 --- !u!114 &1870675203
 MonoBehaviour:
   m_ObjectHideFlags: 0

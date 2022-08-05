@@ -6,10 +6,15 @@ using Random = UnityEngine.Random;
 
 public class Fire : MonoBehaviour
 {
-    public float speed = 3f;
-    public float damage = 25f;
-    
-    private Rigidbody rigidbody;
+ 
+    private new Rigidbody rigidbody;
+
+    [Header("Fire Projectile Variables")]
+    public int burningPercentage = 20;
+    public float projectileSpeed = 1f;
+    public float projectileDamage = 25f;
+    public bool invertForwardDirection = true;
+
     
     // Start is called before the first frame update
     void Start()
@@ -18,24 +23,31 @@ public class Fire : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        rigidbody.velocity = transform.forward * speed;
+        if (invertForwardDirection)
+        {
+            rigidbody.velocity = -transform.forward * projectileSpeed;
+        }
+        else
+        {
+            rigidbody.velocity = transform.forward * projectileSpeed;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Killable")) {
             var health = collision.gameObject.GetComponent<HealthSystem>();
-            health.damage(damage);
+            health.damage(projectileDamage);
             var dice = Random.Range(0f, 100f);
-            if(dice <= 100 && dice >= 0) health.setHealthEffect(HealthSystem.HealthStatus.Status.BURNED); 
+            if(dice <= burningPercentage && dice >= 0) health.setHealthEffect(HealthSystem.HealthStatus.Status.BURNED); 
         }
         Destroy(transform.parent.gameObject);
     }
 
     public void multiplyDamage(float factor)
     {
-        damage *= factor;
+        projectileDamage *= factor;
     }
 }
