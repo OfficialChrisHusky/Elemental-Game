@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Fire : MonoBehaviour
 {
- 
+
+    public GameObject damageObject;
     private new Rigidbody rigidbody;
 
     [Header("Fire Projectile Variables")]
@@ -37,6 +38,8 @@ public class Fire : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Instantiate(damageObject, collision.contacts[0].point, this.transform.rotation);
+       
         if (collision.gameObject.tag.Equals("Killable")) {
             var health = collision.gameObject.GetComponent<HealthSystem>();
             health.damage(projectileDamage);

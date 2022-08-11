@@ -9655,8 +9655,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a094e9ee506bbfb48a9e84779db8a72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  damage: 25
+  damageObject: {fileID: 894654364206749936, guid: ba18230ed46d2044a9d597fd610e2861, type: 3}
+  burningPercentage: 20
+  projectileSpeed: 14
+  projectileDamage: 25
+  invertForwardDirection: 1
 --- !u!1 &4541834148586730221
 GameObject:
   m_ObjectHideFlags: 0
