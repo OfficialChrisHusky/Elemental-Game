@@ -49,8 +49,12 @@ public class PlayerElementalPower : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 var obj = Instantiate(currentPrefab,ray.origin, mainCamera.transform.rotation);
-                obj.GetComponentInChildren<Fire>().multiplyDamage(increment);
-                increment = incrementBaseStart;
+
+                if (currentElement.Equals(Element.Fire))
+                {
+                    obj.GetComponentInChildren<Fire>().multiplyDamage(increment);
+                    increment = incrementBaseStart;
+                }
             }
         }
     }

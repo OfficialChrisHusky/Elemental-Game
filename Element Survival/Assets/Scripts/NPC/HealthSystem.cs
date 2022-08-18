@@ -22,7 +22,8 @@ public class HealthSystem : MonoBehaviour
     }
     
     public float life = 100f;
-    public Slider healthBar;
+    public GameObject healthBarPrefab;
+    public GameObject enemyUIContainer;
     public Canvas canvas;
     public Camera mainCamera;
     
@@ -31,13 +32,13 @@ public class HealthSystem : MonoBehaviour
 
     private Animator damageAnimation;
     private HealthStatus currentStatus;
-
+    private Slider healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
         damageAnimation = GetComponent<Animator>();
-        healthBar.gameObject.SetActive(true);
+        healthBar = Instantiate(healthBarPrefab, enemyUIContainer.transform,false).GetComponent<Slider>();
     }
 
     // Update is called once per frame

@@ -4820,7 +4820,7 @@ GameObject:
   - component: {fileID: 4420070254364439829}
   m_Layer: 0
   m_Name: FireBallCenter
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14474,8 +14474,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4541834149665139694}
   m_Layer: 0
-  m_Name: GameFireBall
-  m_TagString: Untagged
+  m_Name: NewFireBall
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

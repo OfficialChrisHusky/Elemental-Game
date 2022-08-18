@@ -102,6 +102,20 @@ public class Inventory : MonoBehaviour {
 
     }
 
+    public bool CanBeBuilded(CraftedItem item)
+    {
+        for(int i = 0;  i < item.requirements.Count; i++)
+        {
+            int itemCount = item.quantityRequirements[i];
+            foreach (ItemSlot slot in slots) {
+                if (slot.item != null && slot.item.id == item.requirements[i].id) 
+                    itemCount -= slot.count;
+            }
+            if (itemCount > 0) return false;
+        }
+        return true;
+    }
+
     //------------------------------------
     //------Adding or removing Items------
     //------------------------------------

@@ -11,6 +11,8 @@ public class PlayerGrab : MonoBehaviour
     private GameObject grabbedObject;
     private Rigidbody grabbedRigidbody;
     private bool isGrabbing;
+    private bool placement;
+    private Material defaultPlacementMaterial;
 
     //Throw Variables
     public float throwForce = 10f;
@@ -42,9 +44,16 @@ public class PlayerGrab : MonoBehaviour
         if (isGrabbing) {
             if (Input.GetMouseButtonDown(0)) {
                 isGrabbing = false;
-                grabbedRigidbody.AddForce(ray.direction * throwForce, ForceMode.Impulse);
+                if (placement)  {
+                    placement = false;
+                    grabbedRigidbody.gameObject.GetComponent<MeshRenderer>().material = defaultPlacementMaterial;
+                }
+                else {
+                    grabbedRigidbody.AddForce(ray.direction * throwForce, ForceMode.Impulse);
+                }
             }
-            if (Input.GetMouseButtonDown(1)) {
+            if (Input.GetMouseButtonDown(1) && !placement) {
+                
                 isGrabbing = false;
                 grabbedRigidbody = null;
             }
@@ -55,6 +64,14 @@ public class PlayerGrab : MonoBehaviour
                 isGrabbing = true;
             }
         }
+    }
+
+    public void grabPlacement(GameObject obj, Material defaultMaterial)
+    {
+        grabbedRigidbody = obj.GetComponent<Rigidbody>();
+        defaultPlacementMaterial = defaultMaterial;
+        isGrabbing = true;
+        placement = true;
     }
 
     private void FixedUpdate()

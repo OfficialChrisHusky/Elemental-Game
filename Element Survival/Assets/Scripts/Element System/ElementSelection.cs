@@ -37,6 +37,8 @@ public class ElementSelection : MonoBehaviour
     {
         isOpen = !isOpen;
         buttonContainer.SetActive(isOpen);
+        Player.instance.canLook = !isOpen;
+        Player.instance.canMove = !isOpen;
         Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isOpen;
     }

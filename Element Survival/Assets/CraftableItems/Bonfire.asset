@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776300e0779d1ec45a2ca6a3651ae8d3, type: 3}
+  m_Name: Bonfire
+  m_EditorClassIdentifier: 
+  name: Bonfire
+  description: A reference to Dark Souls?... nah only a simple bonfire
+  id: 5
+  maxStack: 1
+  sprite: {fileID: 21300000, guid: 8b3d902a10f7a4445be06ce220466734, type: 3}
+  requirements:
+  - {fileID: 11400000, guid: 3d6fcfa532f7a164a9159c865b90ce7d, type: 2}
+  quantityRequirements: 03000000
+  instantiated: {fileID: 3390004323312348409, guid: 826ec5c05ebb18a4788ac9e018a2492c, type: 3}
