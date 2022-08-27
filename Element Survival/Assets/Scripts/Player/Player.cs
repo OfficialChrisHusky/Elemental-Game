@@ -26,6 +26,12 @@ public class Player : MonoBehaviour {
     [SerializeField] private AudioSource damageAudio;
     [SerializeField] private Image damageVisual;
 
+    [SerializeField] private GameObject DeathScreen;
+    [SerializeField] private GameObject PauseMenu;
+    [SerializeField] private Transform Character;
+    [SerializeField] private Transform respawnPoint;
+
+
     [Header("Element System")]
     public Ability currentAbility;
     [SerializeField] private Element element;
@@ -191,12 +197,41 @@ public class Player : MonoBehaviour {
         canLook = false;
         canRegenerate = false;
 
+        DeathScreen.SetActive(true);
+        PauseMenu.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        //Unlocks the cursor, and makes it visible to click through the menus//
+
+        Player.instance.canLook = false;
     }
 
     private void UpdateUI() {
 
         healthText.text = "Health: " + ((int)health).ToString();
 
+    }
+
+    public void Respawn ()
+    {
+        Character.transform.position = respawnPoint.transform.position;
+
+        isAlive = true;
+        canMove = true;
+        canLook = true;
+        canRegenerate = true;
+        DeathScreen.SetActive(false);
+        PauseMenu.SetActive(true);
+
+        health = maxHealth;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        //Makes the cursor invisible again, and locks it//
+
+        Player.instance.canLook = true;
+        //Resumes the camera rotation when the Pause menu fades//
     }
 
 }

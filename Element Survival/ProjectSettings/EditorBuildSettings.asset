@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: e481f1721f57ecc4e8db2c2c281ad7de
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/KaiTestScene.unity
     guid: 147ef241936e90b49a1ff9f6e80b5acd
   m_configObjects: {}
