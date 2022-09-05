@@ -1,0 +1,15 @@
+Meeting 09.05.2022:
+-In this meeting we talked about the suggestion Chris Made about Magic Circles, a Way of unlocking new abilities using Runes, check
+ #gameplay-ideas channel for more info.
+-Since the idea way more of a magical thing, and the game is heading in a more Spiritual path, Spencer suggested another idea he mentioned
+ in a response to the idea proposed by Chris. Spencer suggested a system where the Player can do a combo by pressing a specific combination
+ of keys such as qeq2e1q that would have logical sense, like everytime the conbo ends with a 'q' it throws the thing, if it starts with an 'e'
+ it is a movement combo, etc.
+-Kai's dog was bothering him
+-We then talked about how to balance this combo system and settled on doing it this and then waiting for player feedback to see what needs to
+ be changed
+-Another thing we talked about was how we need to have achievments for crazy people that try to do stuff like beating the game without taking
+ damage, or without using other abilities then the base set, etc
+-At the End of the Meeting we discussed tasks for the next week and the tasks are:
+    -Chris: Fixing some bugs with the Crafting system, making the Ability Combo Mechanic
+    -Denoide: Adding the ability to Place buildings (such as bonfire) into the world

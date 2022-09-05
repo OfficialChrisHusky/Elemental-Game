@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager instance;
+
+    private void Awake() {
+
+        if (instance == null) { instance = this; }
+
+    }
+
     public int max = 10;
 
     [SerializeField] private List<Item> allItems = new List<Item>();
+    public List<Recipe> recipes = new List<Recipe>();
 
     private void Update() {
 

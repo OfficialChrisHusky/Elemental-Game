@@ -21,23 +21,51 @@ public class Inventory : MonoBehaviour {
     [SerializeField] private Dictionary<Item, int> items = new Dictionary<Item, int>();
     [SerializeField] private List<ItemSlot> slots = new List<ItemSlot>();
 
+    [Header("Inventory UI")]
     [SerializeField] private bool isOpen = false;
     [SerializeField] private GameObject InventoryUI;
     public ItemSlot tempSlot;
 
-    [Header("Item Description")]
+    [Header("Recipe UI")]
+    [SerializeField] private GameObject recipeSlotPrefab;
+    [SerializeField] private Transform recipeSlotParent;
+    private Dictionary<Recipe, RecipeSlot> recipeSlots = new Dictionary<Recipe, RecipeSlot>();
+
+    [Header("Inventory Description")]
     [SerializeField] private Image itemIcon;
     [SerializeField] private TMP_Text itemNameText;
     [SerializeField] private TMP_Text itemDescriptionText;
+    [SerializeField] private TMP_InputField amountInput;
+
+    [Header("Recipe Description")]
+    [SerializeField] private Image recipeIcon;
+    [SerializeField] private TMP_Text recipeNameText;
+    [SerializeField] private TMP_Text recipeDescriptionText;
 
     [Header("Hotbar")]
     [SerializeField] private ItemSlot selectedSlot;
+
     private int selectedSlotIndex;
+    private int recipeCraftAmount = 1;
+    private Recipe currentRecipe;
 
     private void Start() {
 
         selectedSlot = slots[0];
         selectedSlot.Select();
+
+        foreach(Recipe recipe in GameManager.instance.recipes) {
+
+            RecipeSlot slot = Instantiate(recipeSlotPrefab, recipeSlotParent).GetComponent<RecipeSlot>();
+
+            slot.Initialize(recipe);
+            recipeSlots.Add(recipe, slot);
+
+        }
+
+        UpdateRecipeSlots();
+
+        amountInput.characterValidation = TMP_InputField.CharacterValidation.Integer;
 
     }
 
@@ -66,22 +94,27 @@ public class Inventory : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha7)) { SelectHotbarSlot(6); }
         if (Input.GetKeyDown(KeyCode.Alpha8)) { SelectHotbarSlot(7); }
         if (Input.GetKeyDown(KeyCode.Alpha9)) { SelectHotbarSlot(8); }
+        if (Input.GetKeyDown(KeyCode.Alpha0)) { SelectHotbarSlot(9); }
 
         if(Input.GetAxis("Mouse ScrollWheel") > 0.0f) {
 
-            SelectHotbarSlot(selectedSlotIndex == 0 ? 8 : selectedSlotIndex - 1);
+            SelectHotbarSlot(selectedSlotIndex == 0 ? 9 : selectedSlotIndex - 1);
 
         } else if(Input.GetAxis("Mouse ScrollWheel") < 0.0f) {
 
-            SelectHotbarSlot(selectedSlotIndex == 8 ? 0 : selectedSlotIndex + 1);
+            SelectHotbarSlot(selectedSlotIndex == 9 ? 0 : selectedSlotIndex + 1);
 
         }
 
     }
 
+    //------------------------
+    //------Inventory UI------
+    //------------------------
     private void Open() {
 
         itemIcon.transform.parent.gameObject.SetActive(false);
+        recipeIcon.transform.parent.gameObject.SetActive(false);
         InventoryUI.SetActive(isOpen);
 
         Player.instance.canLook = !isOpen;
@@ -102,18 +135,104 @@ public class Inventory : MonoBehaviour {
 
     }
 
-    public bool CanBeBuilded(CraftedItem item)
-    {
-        for(int i = 0;  i < item.requirements.Count; i++)
-        {
-            int itemCount = item.quantityRequirements[i];
-            foreach (ItemSlot slot in slots) {
-                if (slot.item != null && slot.item.id == item.requirements[i].id) 
-                    itemCount -= slot.count;
+    //-----------------------
+    //------Crafting UI------
+    //-----------------------
+    public void UpdateRecipeSlots() {
+
+        foreach(Recipe recipe in recipeSlots.Keys) {
+
+            int howMany = HowManyCanCraft(recipe);
+
+            recipeSlots[recipe].UpdateSlot(howMany);
+            if (currentRecipe == recipe) {
+
+                if (howMany <= 0) EnableCraftButton(false);
+                else EnableCraftButton(true);
+
             }
-            if (itemCount > 0) return false;
+
         }
-        return true;
+
+    }
+
+    public void ShowRecipeDescription(Recipe recipe, bool canCraft) {
+
+        currentRecipe = recipe;
+
+        recipeIcon.sprite = recipe.mainOutput.sprite;
+        recipeNameText.text = recipe.mainOutput.name;
+        recipeDescriptionText.text = recipe.mainOutput.description;
+        
+        recipeIcon.transform.parent.gameObject.SetActive(true);
+        EnableCraftButton(canCraft);
+
+    }
+
+    public void EnableCraftButton(bool enabled) {
+
+        recipeIcon.transform.parent.GetChild(3).gameObject.GetComponent<Button>().interactable = enabled;
+
+    }
+
+    //------------------------------
+    //------Crafting Functions------
+    //------------------------------
+    public int HowManyCanCraft(Recipe recipe) {
+
+        int ret = 0;
+        bool first = true;
+
+        foreach(ItemPair pair in recipe.requiredItems) {
+
+            if (!items.ContainsKey(pair.item)) return 0;
+            if (items[pair.item] < pair.amount) return 0;
+
+            int temp = items[pair.item] / pair.amount;
+
+            if (first) ret = temp;
+            if (ret > temp) ret = temp;
+
+            first = false;
+
+        }
+
+        return ret;
+
+    }
+
+    public void Craft() {
+
+        foreach(ItemPair pair in currentRecipe.requiredItems) {
+
+            RemoveItem(pair.item, pair.amount * recipeCraftAmount);
+
+        }
+
+        foreach(ItemPair pair in currentRecipe.outputItems) {
+
+            AddItem(pair.item, pair.amount * recipeCraftAmount);
+
+        }
+
+    }
+
+    public void SubmitRecipeAmount(string text) {
+
+        if (text == "") return;
+
+        recipeCraftAmount = int.Parse(text);
+
+        if (HowManyCanCraft(currentRecipe) < recipeCraftAmount) {
+
+            recipeIcon.transform.parent.GetChild(3).gameObject.GetComponent<Button>().interactable = false;
+
+        } else {
+
+            recipeIcon.transform.parent.GetChild(3).gameObject.GetComponent<Button>().interactable = true;
+
+        }
+
     }
 
     //------------------------------------
@@ -123,8 +242,8 @@ public class Inventory : MonoBehaviour {
 
         if(onlyDictionary) {
 
-            if(items.ContainsKey(item)) { items[item] += amount; return; }
-            else { items.Add(item, amount); return; }
+            if(items.ContainsKey(item)) { items[item] += amount; UpdateRecipeSlots(); return; }
+            else { items.Add(item, amount); UpdateRecipeSlots(); return; }
 
         }
 
@@ -151,6 +270,8 @@ public class Inventory : MonoBehaviour {
                     slot.count += temp;
                     slot.UpdateCount();
 
+                    UpdateRecipeSlots();
+
                     return;
 
                 }
@@ -172,6 +293,8 @@ public class Inventory : MonoBehaviour {
                     if (items.ContainsKey(item))
                         { items[item] += temp; } else
                         { items.Add(item, temp); }
+
+                    UpdateRecipeSlots();
 
                     return;
 
@@ -197,6 +320,8 @@ public class Inventory : MonoBehaviour {
 
                 slot.AddItem(item, temp);
                 items[item] += temp;
+
+                UpdateRecipeSlots();
 
                 return;
 
@@ -245,14 +370,24 @@ public class Inventory : MonoBehaviour {
 
         }
 
+        UpdateRecipeSlots();
+
+    }
+
+    public bool ContainsItem(Item item, int amount = 1) {
+
+        if(!items.ContainsKey(item)) return false;
+
+        return items[item] >= amount;
+
     }
 
     private void SelectHotbarSlot(int index) {
 
         selectedSlotIndex = index;
 
-        slots[index].Select();
         selectedSlot.Deselect();
+        slots[index].Select();
         selectedSlot = slots[index];
 
     }
