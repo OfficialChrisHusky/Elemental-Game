@@ -9,7 +9,6 @@ public class Recipe : ScriptableObject {
     public List<ItemPair> requiredItems = new List<ItemPair>();
     public List<ItemPair> outputItems = new List<ItemPair>();
     public float timeToCraft = 1.0f;
-
 }
 
 [System.Serializable]
