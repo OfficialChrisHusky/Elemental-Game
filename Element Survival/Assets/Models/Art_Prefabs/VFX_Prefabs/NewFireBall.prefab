@@ -4817,7 +4817,7 @@ GameObject:
   - component: {fileID: 4541834148119434814}
   - component: {fileID: 2022051345089306228}
   - component: {fileID: 8741939670468709524}
-  - component: {fileID: 4420070254364439829}
+  - component: {fileID: 8252149873449289506}
   m_Layer: 0
   m_Name: FireBallCenter
   m_TagString: Fire
@@ -9643,7 +9643,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.48576668
   m_Center: {x: -0.056630403, y: 0.026493758, z: -0.25704837}
---- !u!114 &4420070254364439829
+--- !u!114 &8252149873449289506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

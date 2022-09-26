@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour {
     [SerializeField] private TMP_Text itemNameText;
     [SerializeField] private TMP_Text itemDescriptionText;
     [SerializeField] private TMP_InputField amountInput;
+    [SerializeField] private Button placeButton;
 
     [Header("Recipe Description")]
     [SerializeField] private Image recipeIcon;
@@ -48,11 +49,13 @@ public class Inventory : MonoBehaviour {
     private int selectedSlotIndex;
     private int recipeCraftAmount = 1;
     private Recipe currentRecipe;
+    private PlayerCraftingAbilities placeSystem;
 
     private void Start() {
 
         selectedSlot = slots[0];
         selectedSlot.Select();
+        placeSystem = this.GetComponent<PlayerCraftingAbilities>();
 
         foreach(Recipe recipe in GameManager.instance.recipes) {
 
@@ -132,6 +135,13 @@ public class Inventory : MonoBehaviour {
         itemDescriptionText.text = item.description;
 
         itemIcon.transform.parent.gameObject.SetActive(true);
+
+        placeButton.onClick.RemoveAllListeners();
+        placeButton.onClick.AddListener(() => { 
+            placeSystem.startPlacementOf(item);
+            isOpen = !isOpen;
+            Open();
+        });
 
     }
 

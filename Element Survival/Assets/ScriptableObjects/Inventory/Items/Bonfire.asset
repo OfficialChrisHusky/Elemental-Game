@@ -16,4 +16,5 @@ MonoBehaviour:
   description: Used for cooking Meat
   id: 5
   maxStack: 10
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 8b3d902a10f7a4445be06ce220466734, type: 3}
+  Object: {fileID: 3390004323312348409, guid: 826ec5c05ebb18a4788ac9e018a2492c, type: 3}

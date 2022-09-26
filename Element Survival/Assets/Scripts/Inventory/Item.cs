@@ -10,6 +10,7 @@ public class Item : ScriptableObject {
     public int id;
     public int maxStack = 100;
     public Sprite sprite;
+    public GameObject Object;
 
     virtual public void PrimaryUse() {
 

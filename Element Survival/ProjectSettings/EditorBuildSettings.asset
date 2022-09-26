@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KaiTestScene.unity
     guid: 147ef241936e90b49a1ff9f6e80b5acd
+  - enabled: 1
+    path: Assets/Scenes/DenoTestScene.unity
+    guid: 0d2a893161725e2488b57f6511b1d8e8
   m_configObjects: {}

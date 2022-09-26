@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Fire : MonoBehaviour
+public class FireBall : MonoBehaviour
 {
 
     public GameObject damageObject;
@@ -16,7 +16,6 @@ public class Fire : MonoBehaviour
     public float projectileDamage = 25f;
     public bool invertForwardDirection = true;
 
-    
     // Start is called before the first frame update
     void Start()
     {

@@ -52,7 +52,7 @@ public class PlayerElementalPower : MonoBehaviour
 
                 if (currentElement.Equals(Element.Fire))
                 {
-                    obj.GetComponentInChildren<Fire>().multiplyDamage(increment);
+                    obj.GetComponentInChildren<FireBall>().multiplyDamage(increment);
                     increment = incrementBaseStart;
                 }
             }
