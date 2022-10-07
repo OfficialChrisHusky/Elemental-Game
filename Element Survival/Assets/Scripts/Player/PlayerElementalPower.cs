@@ -59,6 +59,15 @@ public class PlayerElementalPower : MonoBehaviour
         }
     }
 
+    //COMBO DEBUG
+    public void throwFireball()
+    {
+        var ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        var obj = Instantiate(fireBall, ray.origin, mainCamera.transform.rotation);
+        obj.GetComponentInChildren<FireBall>().multiplyDamage(increment);
+        increment = incrementBaseStart;
+
+    }
     public void selectElement(Element toSelect)
     {
         switch (toSelect)

@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerCraftingAbilities : MonoBehaviour
 {
     [Header("Crafting Variables")]
-    public Material holdingMaterial; //original material of the object that will be placed
-    public Material wrongPlacementMaterial; //transparent material to indicate that the player is placing an object
+    public Material holdingMaterial; //transparent material to indicate that the player is placing an object
+    public Material wrongPlacementMaterial; //transparent material to indicate that the player can't place in the current spot
     public bool canCraft = true; //is the player able to craft something?
 
     private PlayerGrab grabScript;
