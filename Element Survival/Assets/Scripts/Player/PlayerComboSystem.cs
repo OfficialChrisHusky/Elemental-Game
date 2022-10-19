@@ -14,10 +14,12 @@ public class PlayerComboSystem : MonoBehaviour
     private float offset = 0.2f;
     private float currentTime = -1;
     private bool notRemove = false;
+
+    private PlayerElementalPower elementalPowers;
     // Start is called before the first frame update
     void Start()
     {
-        
+        elementalPowers = this.GetComponent<PlayerElementalPower>();
     }
 
     // Update is called once per frame
@@ -72,7 +74,8 @@ public class PlayerComboSystem : MonoBehaviour
         {
             case "rtyu":
                 notRemove = true;
-                buffer = "FireAbility1";
+                buffer = "";
+                elementalPowers.throwFireball();
                 StartCoroutine(wait());
                 break;
             case "rtyh":
